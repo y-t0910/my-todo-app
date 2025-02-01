@@ -27,4 +27,4 @@ const AddTodo = ({ addTodo }: AddTodoProps) => {
   );
 };
 
-export default AddTodo;
+export { AddTodo };

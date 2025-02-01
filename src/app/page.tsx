@@ -1,5 +1,5 @@
-import Providers from './providers';
-import TodoApp from '../components/TodoApp';
+import { Providers } from './providers';
+import { TodoApp } from '../components/TodoApp';
 
 export default function Page() {
   return (

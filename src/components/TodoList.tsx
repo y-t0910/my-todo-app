@@ -27,4 +27,4 @@ const TodoList = ({ todos, onToggle, onDelete }: TodoListProps): JSX.Element => 
   );
 };
 
-export default TodoList;
+export { TodoList };

@@ -1,10 +1,10 @@
 'use client';
 import React from 'react';
-import TodoList from './TodoList';
-import AddTodo from './AddTodo';
+import { TodoList } from './TodoList';
+import { AddTodo } from './AddTodo';
 import { useTodos } from '../hooks/useTodos';
 
-export default function TodoApp() {
+export function TodoApp() {
   const { todos, addTodo, toggleTodo, deleteTodo } = useTodos();
 
   return (

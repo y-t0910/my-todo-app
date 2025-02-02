@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* カスタム基本スタイル */
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-800;
+  }
+}
+
+/* カスタムコンポーネントスタイル */
+@layer components {
+  .todo-container {
+    @apply max-w-2xl mx-auto p-6;
+  }
+
+  .todo-input {
+    @apply w-full px-4 py-2 rounded-lg border border-gray-300 
+    focus:ring-2 focus:ring-blue-500 focus:border-transparent
+    transition duration-200;
+  }
+
+  .todo-item {
+    @apply flex items-center gap-3 p-4 my-2 bg-white rounded-lg
+    shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+
+  .todo-checkbox {
+    @apply w-5 h-5 rounded border-gray-300 text-blue-600 
+    focus:ring-blue-500;
+  }
+
+  .todo-text {
+    @apply flex-1 text-gray-700;
+  }
+
+  .todo-button {
+    @apply px-4 py-2 rounded-lg bg-blue-500 text-white
+    hover:bg-blue-600 active:bg-blue-700
+    transition duration-200;
+  }
+
+  .delete-button {
+    @apply text-red-500 hover:text-red-600
+    transition duration-200;
+  }
+}
+
+/* カスタムユーティリティスタイル */
+@layer utilities {
+  .todo-completed {
+    @apply line-through text-gray-400;
+  }
+}

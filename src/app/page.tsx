@@ -1,8 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { Todo } from '../types/todo';
-import { TodoItem } from '../components/TodoItem';
+import { Todo , TodoListProps} from '../types/todo';  
+import TodoList from '../components/TodoList';  
+import { todo } from 'node:test';
+
+
 
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -14,11 +17,22 @@ export default function Home() {
     if (!newTodo.trim()) return;
 
     const todo: Todo = {
-      id: crypto.randomUUID(),
+      id: todos.length + 1, // 数値型のIDを生成
       title: newTodo,
       completed: false,
       createdAt: new Date(),
-      priority: 'medium',
+      priority: 'medium' // 文字列リテラル型として指定
+      ,
+      Todo: {
+        id: 0,
+        title: undefined,
+        priority: '',
+        completed: false
+      },
+      map: function (arg0: (todo: Todo) => import("react").JSX.Element): import("react").ReactNode {
+        throw new Error('Function not implemented.');
+      },
+      text: ''
     };
 
     setTodos([...todos, todo]);
@@ -62,27 +76,20 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="space-y-3">
-        {filteredTodos.map(todo => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            onToggle={(id) => {
-              setTodos(todos.map(t => 
-                t.id === id ? { ...t, completed: !t.completed } : t
-              ));
-            }}
-            onDelete={(id) => {
-              setTodos(todos.filter(t => t.id !== id));
-            }}
-            onEdit={(id, newTitle) => {
-              setTodos(todos.map(t =>
-                t.id === id ? { ...t, title: newTitle } : t
-              ));
-            }}
-          />
+      {/* TodoListコンポーネントを使用 */}
+      <TodoList
+        todos={filteredTodos}
+        onToggle={(id) => {
+          setTodos(todos.map(t => 
+            t.id === id ? { ...t, completed: !t.completed } : t
+          ));
+        }}
+        onDelete={(id) => {
+          setTodos(todos.filter(t => t.id !== id));
+        }}
+        onEdit={(id: number, newTitle: any) => setTodos(todos.map(t => t.id === id ? { ...t, title: newTitle } : t
         ))}
-      </div>
+      />
     </main>
   );
 }

@@ -9,8 +9,7 @@ const AddTodo = ({ addTodo }: AddTodoProps) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (text.trim()) {  // 空文字チェックを追加
-      addTodo(text);
+    if (text.trim()) {  
       setText('');
     }
   };

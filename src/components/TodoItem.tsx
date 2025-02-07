@@ -2,10 +2,15 @@ import React from 'react';
 import { Todo } from '../types/todo';
 
 interface Props {
-  todo: Todo;
-  onToggle: (id: string) => void;
-  onDelete: (id: string) => void;
-  onEdit: (id: string, newTitle: string) => void;
+todo: {
+  id: number;
+  title: React.ReactNode;
+  priority: string;
+  completed: boolean;
+};
+  onToggle: (id: number) => void;
+  onDelete: (id: number) => void;
+  onEdit: (id: number, newTitle: string) => void;  // newTitleの型をstringに修正
 }
 
 export const TodoItem = ({ todo, onToggle, onDelete, onEdit }: Props) => {

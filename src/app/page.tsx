@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Todo , TodoListProps} from '../types/todo';  
+import { Todo } from '../types/todo';  
 import TodoList from '../components/TodoList';  
 import { todo } from 'node:test';
 
@@ -87,8 +87,10 @@ export default function Home() {
         onDelete={(id) => {
           setTodos(todos.filter(t => t.id !== id));
         }}
-        onEdit={(id: number, newTitle: any) => setTodos(todos.map(t => t.id === id ? { ...t, title: newTitle } : t
-        ))}
+        onEdit={(id: number, newTitle: any) => {
+          return setTodos(todos.map(t => t.id === id ? { ...t, title: newTitle } : t
+          ));
+        }}
       />
     </main>
   );

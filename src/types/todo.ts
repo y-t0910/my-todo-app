@@ -23,4 +23,3 @@ export interface Todo {
   text: string;    // Todoの内容
   completed: boolean; // 完了状態
 }
-

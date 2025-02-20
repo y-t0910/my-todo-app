@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Todo } from '../types/todo';  
 import TodoList from '../components/TodoList';  
 import { todo } from 'node:test';
-import { TodoForm } from '../components/TodoForm';
+import { TodoForm } from '@/components/TodoForm';
 
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -16,7 +16,17 @@ export default function Home() {
       title,
       completed: false,
       createdAt: new Date(),
-      priority: 'medium'
+      priority: 'medium',
+      Todo: {
+        id: 0,
+        title: undefined,
+        priority: '',
+        completed: false
+      },
+      map: function (arg0: (todo: Todo) => import("react").JSX.Element): import("react").ReactNode {
+        throw new Error('Function not implemented.');
+      },
+      text: ''
     };
     setTodos([...todos, newItem]);
   };

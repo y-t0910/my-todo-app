@@ -4,39 +4,21 @@ import { useState } from 'react';
 import { Todo } from '../types/todo';  
 import TodoList from '../components/TodoList';  
 import { todo } from 'node:test';
-
-
+import { TodoForm } from '../components/TodoForm';
 
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [newTodo, setNewTodo] = useState('');
   const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
 
-  const addTodo = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newTodo.trim()) return;
-
-    const todo: Todo = {
-      id: todos.length + 1, // 数値型のIDを生成
-      title: newTodo,
+  const handleAddTodo = (title: string) => {
+    const newItem: Todo = {
+      id: todos.length + 1,
+      title,
       completed: false,
       createdAt: new Date(),
-      priority: 'medium' // 文字列リテラル型として指定
-      ,
-      Todo: {
-        id: 0,
-        title: undefined,
-        priority: '',
-        completed: false
-      },
-      map: function (arg0: (todo: Todo) => import("react").JSX.Element): import("react").ReactNode {
-        throw new Error('Function not implemented.');
-      },
-      text: ''
+      priority: 'medium'
     };
-
-    setTodos([...todos, todo]);
-    setNewTodo('');
+    setTodos([...todos, newItem]);
   };
 
   const filteredTodos = todos.filter(todo => {
@@ -51,15 +33,8 @@ export default function Home() {
         Todo App
       </h1>
       
-      <form onSubmit={addTodo} className="mb-6">
-        <input
-          type="text"
-          className="todo-input"
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
-          placeholder="新しいタスクを入力..."
-        />
-      </form>
+      {/* TodoFormを使用 */}
+      <TodoForm onAdd={handleAddTodo} />
 
       <div className="flex justify-center gap-4 mb-6">
         {(['all', 'active', 'completed'] as const).map((f) => (

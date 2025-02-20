@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { Todo } from '../types';
+
+export interface Todo {
+  id: number;
+  text: string;
+  completed: boolean;
+}
 
 export const useTodos = () => {
   // Todoリストの状態を管理
